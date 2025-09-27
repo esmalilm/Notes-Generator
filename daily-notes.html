@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Notes</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Daily Notes Template</h1>
+  <form id="dailyForm">
+    <label>Acc#: <input type="text" name="acc"></label>
+    <label>Case: <input type="text" name="case"></label>
+    <label>Affected Domain: <input type="text" name="domain"></label>
+    <label>Customer's Name: <input type="text" name="customer"></label>
+    <label>Authentication: <input type="text" name="auth" value="Token"></label>
+    <label>Jarvis URL: <input type="text" name="url"></label>
+    <label>Issue: <textarea name="issue"></textarea></label>
+    <label>Steps Taken: <textarea name="steps"></textarea></label>
+    <button type="button" onclick="generateDaily()">Generate Note</button>
+  </form>
+
+  <h2>Generated Note:</h2>
+  <pre id="dailyOutput"></pre>
+  <button onclick="copyToClipboard('dailyOutput')">Copy to Clipboard</button>
+
+  <p><a href="index.html">⬅ Back to Home</a></p>
+  <script src="script.js"></script>
+</body>
+</html>

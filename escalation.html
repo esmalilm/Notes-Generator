@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Escalation Notes</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Escalation Template</h1>
+  <form id="escalationForm">
+    <label>What needs fixing: <textarea name="fix"></textarea></label>
+    <label>Error Message: <textarea name="error"></textarea></label>
+    <label>When did the issue start occurring: <textarea name="when"></textarea></label>
+    <label>What was changed: <textarea name="changed"></textarea></label>
+    <label>Steps to replicate: <textarea name="steps"></textarea></label>
+    <label>Step 1 - <input type="text" name="s1"></label>
+    <label>Step 2 - <input type="text" name="s2"></label>
+    <label>Step 3 - <input type="text" name="s3"></label>
+    <label>Additional Notes: <textarea name="notes"></textarea></label>
+    <button type="button" onclick="generateEscalation()">Generate Note</button>
+  </form>
+
+  <h2>Generated Note:</h2>
+  <pre id="escalationOutput"></pre>
+  <button onclick="copyToClipboard('escalationOutput')">Copy to Clipboard</button>
+
+  <p><a href="index.html">⬅ Back to Home</a></p>
+  <script src="script.js"></script>
+</body>
+</html>
