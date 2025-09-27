@@ -4,28 +4,132 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Daily Notes</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #f9f9f9;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background-color: #3498db;
+      color: white;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+
+    #output {
+      margin-top: 20px;
+      white-space: pre-wrap;
+      background: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+    }
+
+    /* Back button */
+    .back-button {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      text-decoration: none;
+      background-color: #e74c3c;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      transition: background-color 0.2s ease;
+      z-index: 1000;
+    }
+    .back-button:hover {
+      background-color: #c0392b;
+    }
+  </style>
 </head>
 <body>
-  <h1>Daily Notes Template</h1>
-  <form id="dailyForm">
-    <label>Acc#: <input type="text" name="acc"></label>
-    <label>Case: <input type="text" name="case"></label>
-    <label>Affected Domain: <input type="text" name="domain"></label>
-    <label>Customer's Name: <input type="text" name="customer"></label>
-    <label>Authentication: <input type="text" name="auth" value="Token"></label>
-    <label>Jarvis URL: <input type="text" name="url"></label>
-    <label>Issue: <textarea name="issue"></textarea></label>
-    <label>Steps Taken: <textarea name="steps"></textarea></label>
-    <button type="button" onclick="generateDaily()">Generate Note</button>
-  </form>
-
-  <h2>Generated Note:</h2>
-  <pre id="dailyOutput"></pre>
-  <button onclick="copyToClipboard('dailyOutput')">Copy to Clipboard</button>
-
   <a href="index.html" class="back-button">← Back to Home</a>
-  <script src="script.js"></script>
+
+  <h1>Daily Notes</h1>
+  
+  <label>Acc#</label>
+  <input type="text" id="acc">
+
+  <label>Case:</label>
+  <input type="text" id="case">
+
+  <label>Affected Domain:</label>
+  <input type="text" id="domain">
+
+  <label>Customer's Name:</label>
+  <input type="text" id="customer">
+
+  <label>Authentication:</label>
+  <input type="text" id="auth" value="Token">
+
+  <label>Jarvis URL:</label>
+  <input type="text" id="url">
+
+  <label>Issue:</label>
+  <textarea id="issue"></textarea>
+
+  <label>Steps Taken:</label>
+  <textarea id="steps"></textarea>
+
+  <button onclick="generateNote()">Generate Note</button>
+  <button onclick="copyNote()">Copy to Clipboard</button>
+
+  <div id="output"></div>
+
+  <script>
+    function generateNote() {
+      let note = 
+`Acc#: ${document.getElementById("acc").value}
+Case: ${document.getElementById("case").value}
+Affected Domain: ${document.getElementById("domain").value}
+Customers Name: ${document.getElementById("customer").value}
+Authentication: ${document.getElementById("auth").value}
+Jarvis URL: ${document.getElementById("url").value}
+Issue: ${document.getElementById("issue").value}
+Steps Taken: ${document.getElementById("steps").value}`;
+
+      document.getElementById("output").innerText = note;
+    }
+
+    function copyNote() {
+      let text = document.getElementById("output").innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Note copied to clipboard!");
+      });
+    }
+  </script>
 </body>
- 
 </html>
