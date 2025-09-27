@@ -3,29 +3,128 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Escalation Notes</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Escalation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #f9f9f9;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background-color: #3498db;
+      color: white;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+
+    #output {
+      margin-top: 20px;
+      white-space: pre-wrap;
+      background: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+    }
+
+    /* Back button */
+    .back-button {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      text-decoration: none;
+      background-color: #e74c3c;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      transition: background-color 0.2s ease;
+      z-index: 1000;
+    }
+    .back-button:hover {
+      background-color: #c0392b;
+    }
+  </style>
 </head>
 <body>
-  <h1>Escalation Template</h1>
-  <form id="escalationForm">
-    <label>What needs fixing: <textarea name="fix"></textarea></label>
-    <label>Error Message: <textarea name="error"></textarea></label>
-    <label>When did the issue start occurring: <textarea name="when"></textarea></label>
-    <label>What was changed: <textarea name="changed"></textarea></label>
-    <label>Steps to replicate: <textarea name="steps"></textarea></label>
-    <label>Step 1 - <input type="text" name="s1"></label>
-    <label>Step 2 - <input type="text" name="s2"></label>
-    <label>Step 3 - <input type="text" name="s3"></label>
-    <label>Additional Notes: <textarea name="notes"></textarea></label>
-    <button type="button" onclick="generateEscalation()">Generate Note</button>
-  </form>
+  <a href="index.html" class="back-button">← Back to Home</a>
 
-  <h2>Generated Note:</h2>
-  <pre id="escalationOutput"></pre>
-  <button onclick="copyToClipboard('escalationOutput')">Copy to Clipboard</button>
+  <h1>Escalation</h1>
+  
+  <label>What needs fixing:</label>
+  <textarea id="fix"></textarea>
 
-  <p><a href="index.html">⬅ Back to Home</a></p>
-  <script src="script.js"></script>
+  <label>Error Message:</label>
+  <textarea id="error"></textarea>
+
+  <label>When did the issue start occurring:</label>
+  <textarea id="when"></textarea>
+
+  <label>What was changed:</label>
+  <textarea id="changed"></textarea>
+
+  <label>Steps to replicate:</label>
+  <textarea id="steps"></textarea>
+
+  <label>Additional Notes:</label>
+  <textarea id="notes"></textarea>
+
+  <button onclick="generateNote()">Generate Note</button>
+  <button onclick="copyNote()">Copy to Clipboard</button>
+
+  <div id="output"></div>
+
+  <script>
+    function generateNote() {
+      let note = 
+`What needs fixing: ${document.getElementById("fix").value}
+Error Message: ${document.getElementById("error").value}
+When did the issue start occurring: ${document.getElementById("when").value}
+What was changed: ${document.getElementById("changed").value}
+
+Steps to replicate: 
+${document.getElementById("steps").value}
+
+Additional Notes: ${document.getElementById("notes").value}`;
+
+      document.getElementById("output").innerText = note;
+    }
+
+    function copyNote() {
+      let text = document.getElementById("output").innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Note copied to clipboard!");
+      });
+    }
+  </script>
 </body>
 </html>
